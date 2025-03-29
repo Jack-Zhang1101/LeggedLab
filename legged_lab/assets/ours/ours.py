@@ -38,7 +38,7 @@ ATOM_CFG = ArticulationCfg(
         ),
     ),
     init_state=ArticulationCfg.InitialStateCfg(
-        pos=(0.0, 0.0, 0.56),
+        pos=(0.0, 0.0, 0.52),
         joint_pos={
             'left_hip_roll_joint': 0.,
             'left_hip_yaw_joint': 0.,
@@ -191,29 +191,22 @@ DUCK_CFG = ArticulationCfg(
         ),
     ),
     init_state=ArticulationCfg.InitialStateCfg(
-        pos=(0.0, 0.0, 0.56),
+        pos=(0.0, 0.0, 0.42),
         joint_pos={
-            'left_hip_roll_joint': 0.,
-            'left_hip_yaw_joint': 0.,
-            'left_hip_pitch_joint': -0.25,
-            'left_knee_joint': 0.7,
-            'left_ankle_joint': -0.45,
-            'left_shoulder_pitch_joint': 0.0,
-            'left_shoulder_roll_joint': 0.0,
-            'left_shoulder_yaw_joint': 0.0,
-            'left_elbow_joint': 0.0,
+            'left_hip_yaw_joint': 0.0,
+            'left_hip_roll_joint': -0.05,
+            'left_hip_pitch_joint': -0.4,
+            'left_knee_joint': 0.9,
+            'left_ankle_joint': -0.5,
 
-
-
-            'right_hip_roll_joint': 0.,
             'right_hip_yaw_joint': 0.,
-            'right_hip_pitch_joint': -0.25,
-            'right_knee_joint': 0.7,
-            'right_ankle_joint': -0.45,
-            'right_shoulder_pitch_joint': 0.0,
-            'right_shoulder_roll_joint': 0.0,
-            'right_shoulder_yaw_joint': 0.0,
-            'right_elbow_joint': 0.0,
+            'right_hip_roll_joint': 0.05,
+            'right_hip_pitch_joint': -0.4,
+            'right_knee_joint': 0.9,
+            'right_ankle_joint': -0.5,
+
+
+
         },
         joint_vel={".*": 0.0},
     ),
@@ -248,59 +241,60 @@ DUCK_CFG = ArticulationCfg(
         
             },
             damping={
-                ".*_hip_roll_joint":1.5,
-               ".*_hip_yaw_joint":1,
-                ".*_hip_pitch_joint": 1.25,
-                ".*_knee_joint": 1.25,
+                ".*_hip_roll_joint":2.0,
+               ".*_hip_yaw_joint":2.0,
+                ".*_hip_pitch_joint": 2.0,
+                ".*_knee_joint": 2.0,
             },
             armature=0.01,
         ),
         "feet": ImplicitActuatorCfg(
             joint_names_expr=[ ".*_ankle_joint"],
             effort_limit_sim={
-                 ".*_ankle_joint": 12.0,
+                 ".*_ankle_joint": 18.0,
             },
             velocity_limit_sim={
                 ".*_ankle_joint": 25.0,
             },
-            stiffness=35.0,
-            damping=0.25,
+            stiffness=25.0,
+            damping=0.5,
             armature=0.01,
         ),
-        "shoulders": ImplicitActuatorCfg(
-            joint_names_expr=[
-                ".*_shoulder_pitch_joint",
-                ".*_shoulder_roll_joint",
-            ],
-            effort_limit_sim={
-                ".*_shoulder_pitch_joint": 5.0,
-                ".*_shoulder_roll_joint": 5.0,
-            },
-            velocity_limit_sim={
-                ".*_shoulder_pitch_joint": 10.0,
-                ".*_shoulder_roll_joint": 10.0,
-            },
-            stiffness=8.0,
-            damping=0.2,
-            armature=0.01,
-        ),
-        "arms": ImplicitActuatorCfg(
-            joint_names_expr=[
-                ".*_shoulder_yaw_joint",
-                ".*_elbow_joint",
-            ],
-            effort_limit_sim={
-                ".*_shoulder_yaw_joint": 5.0,
-                ".*_elbow_joint": 5.0,
-            },
-            velocity_limit_sim={
-                ".*_shoulder_yaw_joint": 10.0,
-                ".*_elbow_joint": 10.0,
-            },
-            stiffness=8.0,
-            damping=0.2,
-            armature=0.1,
-        ),
+        #no shoulder and arm for duck
+        # "shoulders": ImplicitActuatorCfg(
+        #     joint_names_expr=[
+        #         ".*_shoulder_pitch_joint",
+        #         ".*_shoulder_roll_joint",
+        #     ],
+        #     effort_limit_sim={
+        #         ".*_shoulder_pitch_joint": 5.0,
+        #         ".*_shoulder_roll_joint": 5.0,
+        #     },
+        #     velocity_limit_sim={
+        #         ".*_shoulder_pitch_joint": 10.0,
+        #         ".*_shoulder_roll_joint": 10.0,
+        #     },
+        #     stiffness=8.0,
+        #     damping=0.2,
+        #     armature=0.01,
+        # ),
+        # "arms": ImplicitActuatorCfg(
+        #     joint_names_expr=[
+        #         ".*_shoulder_yaw_joint",
+        #         ".*_elbow_joint",
+        #     ],
+        #     effort_limit_sim={
+        #         ".*_shoulder_yaw_joint": 5.0,
+        #         ".*_elbow_joint": 5.0,
+        #     },
+        #     velocity_limit_sim={
+        #         ".*_shoulder_yaw_joint": 10.0,
+        #         ".*_elbow_joint": 10.0,
+        #     },
+        #     stiffness=8.0,
+        #     damping=0.2,
+        #     armature=0.1,
+        # ),
 
         #no wrist joints for atom
 

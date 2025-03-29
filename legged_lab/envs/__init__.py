@@ -6,6 +6,7 @@ from legged_lab.envs.gr2.gr2_config import GR2FlatEnvCfg, GR2RoughEnvCfg, GR2Fla
 from legged_lab.envs.anymal_d.anymal_d_config import AnymalDFlatEnvCfg, AnymalDRoughEnvCfg, AnymalDFlatAgentCfg, AnymalDRoughAgentCfg
 
 from legged_lab.envs.atom.atom_config import ATOMFlatEnvCfg, ATOMRoughEnvCfg, ATOMFlatAgentCfg, ATOMRoughAgentCfg
+from legged_lab.envs.duck.duck_config import DUCKFlatEnvCfg, DUCKRoughEnvCfg, DUCKFlatAgentCfg, DUCKRoughAgentCfg
 from legged_lab.utils.task_registry import task_registry
 
 
@@ -20,3 +21,6 @@ task_registry.register("anymal_d_rough", BaseEnv, AnymalDRoughEnvCfg(), AnymalDR
 
 task_registry.register("atom_flat", BaseEnv, ATOMFlatEnvCfg(), ATOMFlatAgentCfg())
 task_registry.register("atom_rough", BaseEnv, ATOMRoughEnvCfg(), ATOMRoughAgentCfg())
+
+task_registry.register("duck_flat", BaseEnv, DUCKFlatEnvCfg(), DUCKFlatAgentCfg())
+task_registry.register("duck_rough", BaseEnv, DUCKRoughEnvCfg(), DUCKRoughAgentCfg())

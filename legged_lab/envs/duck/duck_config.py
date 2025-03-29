@@ -2,7 +2,7 @@ from legged_lab.envs.base.base_env_config import (  # noqa:F401
     BaseEnvCfg, BaseAgentCfg, BaseSceneCfg, RobotCfg, DomainRandCfg,
     RewardCfg, HeightScannerCfg, AddRigidBodyMassCfg, PhysxCfg, SimCfg, MLPPolicyCfg, RNNPolicyCfg
 )
-from legged_lab.assets.ours import ATOM_CFG
+from legged_lab.assets.ours import DUCK_CFG
 from legged_lab.terrains import GRAVEL_TERRAINS_CFG, ROUGH_TERRAINS_CFG
 from isaaclab.managers import RewardTermCfg as RewTerm
 import legged_lab.mdp as mdp
@@ -11,7 +11,7 @@ from isaaclab.utils import configclass
 
 
 @configclass
-class ATOMRewardCfg(RewardCfg):
+class DUCKRewardCfg(RewardCfg):
     track_lin_vel_xy_exp = RewTerm(func=mdp.track_lin_vel_xy_yaw_frame_exp, weight=1.0, params={"std": 0.5})
     track_ang_vel_z_exp = RewTerm(func=mdp.track_ang_vel_z_world_exp, weight=1.0, params={"std": 0.5})
     lin_vel_z_l2 = RewTerm(func=mdp.lin_vel_z_l2, weight=-1.0)
@@ -30,19 +30,19 @@ class ATOMRewardCfg(RewardCfg):
     feet_stumble = RewTerm(func=mdp.feet_stumble, weight=-2.0, params={"sensor_cfg": SceneEntityCfg("contact_sensor", body_names=[".*foot.*"])})
     dof_pos_limits = RewTerm(func=mdp.joint_pos_limits, weight=-2.0)
     joint_deviation_hip = RewTerm(func=mdp.joint_deviation_l1, weight=-0.1, params={"asset_cfg": SceneEntityCfg("robot", joint_names=[".*_hip_yaw.*", ".*_hip_roll.*"])})
-    joint_deviation_arms = RewTerm(func=mdp.joint_deviation_l1, weight=-0.2, params={"asset_cfg": SceneEntityCfg("robot", joint_names=[".*_shoulder.*", ".*_elbow.*"])})
+    # joint_deviation_arms = RewTerm(func=mdp.joint_deviation_l1, weight=-0.2, params={"asset_cfg": SceneEntityCfg("robot", joint_names=[".*_shoulder.*", ".*_elbow.*"])})
     joint_deviation_legs = RewTerm(func=mdp.joint_deviation_l1, weight=-0.05, params={"asset_cfg": SceneEntityCfg("robot", joint_names=[".*_hip_pitch.*", ".*_knee.*", ".*ankle.*"])})
 
 
 @configclass
-class ATOMFlatEnvCfg(BaseEnvCfg):
+class DUCKFlatEnvCfg(BaseEnvCfg):
 
-    reward = ATOMRewardCfg()
+    reward = DUCKRewardCfg()
 
     def __post_init__(self):
         super().__post_init__()
         self.scene.height_scanner.prim_body_name = "base_link"
-        self.scene.robot = ATOM_CFG
+        self.scene.robot = DUCK_CFG
         self.scene.terrain_type = "generator"
         self.scene.terrain_generator = GRAVEL_TERRAINS_CFG
         self.robot.terminate_contacts_body_names = [".*base.*"]
@@ -51,13 +51,13 @@ class ATOMFlatEnvCfg(BaseEnvCfg):
 
 
 @configclass
-class ATOMFlatAgentCfg(BaseAgentCfg):
-    experiment_name: str = "atom_flat"
-    wandb_project: str = "atom_flat"
+class DUCKFlatAgentCfg(BaseAgentCfg):
+    experiment_name: str = "duck_flat"
+    wandb_project: str = "duck_flat"
 
 
 @configclass
-class ATOMRoughEnvCfg(ATOMFlatEnvCfg):
+class DUCKRoughEnvCfg(DUCKFlatEnvCfg):
 
     def __post_init__(self):
         super().__post_init__()
@@ -71,7 +71,7 @@ class ATOMRoughEnvCfg(ATOMFlatEnvCfg):
 
 
 @configclass
-class ATOMRoughAgentCfg(BaseAgentCfg):
-    experiment_name: str = "atom_rough"
-    wandb_project: str = "atom_rough"
+class DUCKRoughAgentCfg(BaseAgentCfg):
+    experiment_name: str = "duck_rough"
+    wandb_project: str = "duck_rough"
     policy = RNNPolicyCfg()
