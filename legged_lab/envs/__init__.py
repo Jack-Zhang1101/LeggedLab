@@ -4,6 +4,8 @@ from legged_lab.envs.h1.h1_config import H1FlatEnvCfg, H1RoughEnvCfg, H1FlatAgen
 from legged_lab.envs.g1.g1_config import G1FlatEnvCfg, G1RoughEnvCfg, G1FlatAgentCfg, G1RoughAgentCfg
 from legged_lab.envs.gr2.gr2_config import GR2FlatEnvCfg, GR2RoughEnvCfg, GR2FlatAgentCfg, GR2RoughAgentCfg
 from legged_lab.envs.anymal_d.anymal_d_config import AnymalDFlatEnvCfg, AnymalDRoughEnvCfg, AnymalDFlatAgentCfg, AnymalDRoughAgentCfg
+
+from legged_lab.envs.atom.atom_config import ATOMFlatEnvCfg, ATOMRoughEnvCfg, ATOMFlatAgentCfg, ATOMRoughAgentCfg
 from legged_lab.utils.task_registry import task_registry
 
 
@@ -15,3 +17,6 @@ task_registry.register("gr2_flat", BaseEnv, GR2FlatEnvCfg(), GR2FlatAgentCfg())
 task_registry.register("gr2_rough", BaseEnv, GR2RoughEnvCfg(), GR2RoughAgentCfg())
 task_registry.register("anymal_d_flat", BaseEnv, AnymalDFlatEnvCfg(), AnymalDFlatAgentCfg())
 task_registry.register("anymal_d_rough", BaseEnv, AnymalDRoughEnvCfg(), AnymalDRoughAgentCfg())
+
+task_registry.register("atom_flat", BaseEnv, ATOMFlatEnvCfg(), ATOMFlatAgentCfg())
+task_registry.register("atom_rough", BaseEnv, ATOMRoughEnvCfg(), ATOMRoughAgentCfg())
